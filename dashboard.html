@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard</title>
+  </head>
+  <body>
+    <h1>Welcome to the Dashboard!</h1>
+    <p>This is a protected area only accessible to logged-in users.</p>
+
+    <!-- Optionally, you can show user information here -->
+    <p id="user-info"></p>
+
+    <button id="logout">Logout</button>
+
+    <script>
+      // Get user info from localStorage
+      const user = JSON.parse(localStorage.getItem("user"));
+
+      if (user) {
+        document.getElementById(
+          "user-info"
+        ).textContent = `Logged in as: ${user.name}, Email: ${user.email}`;
+      } else {
+        // If no user info, redirect to login page
+        window.location.href = "/login.html";
+      }
+
+      // Handle logout
+      document.getElementById("logout").addEventListener("click", () => {
+        localStorage.removeItem("user"); // Remove user info
+        window.location.href = "/login.html"; // Redirect to login
+      });
+    </script>
+  </body>
+</html>
